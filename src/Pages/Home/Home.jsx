@@ -10,7 +10,8 @@ const Home = () => {
     console.log(messageInput);
     const axiosPublic = useAxiosPublic()
     const { user} = useAuth();
-    const socket = io("http://localhost:5000");
+    // const socket = io("https://resolute-ai-job-task-backend.vercel.app/");
+    const socket = io("http://localhost:5000/");
 
     // Ref for the container element wrapping all the messages
     const messagesEndRef = useRef(null);
@@ -74,7 +75,7 @@ const Home = () => {
         }
     };
 
-
+    // post the message in the backend 
     const handleMessageSubmit = (e) => {
         e.preventDefault();
         if (messageInput.trim() !== "") {
@@ -101,8 +102,8 @@ const Home = () => {
     };
     return (
         <div className=" container hero min-h-screen bg-[#0489D7] max-w-6xl mx-auto pt-4  ">
-            <div className="grid grid-cols-2 w-full mx-auto h-[500px] bg-red-500">
-                <div className="w-[434px] mx-auto bg-green-600 h-[450px] ">
+            <div className="grid grid-cols-2 w-full mx-auto h-[500px] ">
+                <div className="w-[434px] mx-auto  h-[450px] ">
                     <iframe
                         width="500"
                         height="400"
@@ -121,6 +122,7 @@ const Home = () => {
                         <div   className="container mx-auto p-4">
                             <h2 className="text-3xl text-center text-gray-200 font-bold mb-4">live Chat.. </h2>
                             <div className="flex flex-col gap-2  ">
+                                {/* display the chat massage */}
                                 {messages.map((msg, index) => (
                                     <div
                                         key={index}
@@ -138,7 +140,7 @@ const Home = () => {
 
                                             <div className="flex flex-col">
                                                 <h3 className="text-black ">{msg.user?.name}
-                                                    <span style={{ fontSize: '12px', }} className="text-gray-500 ml-2"> {formatTime(msg?.createdAt)}</span>
+                                                    <span style={{ fontSize: '12px', }} className="text-gray-500 ml-2"> {formatTime(msg?.timestamp)}</span>
                                                 </h3>
                                                 <h2 className="text-gray-200">{msg.text}</h2>
                                             </div>
