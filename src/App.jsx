@@ -4,9 +4,7 @@ function App() {
 
   return (
     <>
-      <div>
-        this job task project 
-      </div>
+      
     </>
   )
 }
